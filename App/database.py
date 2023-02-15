@@ -7,7 +7,7 @@ username = os.environ.get("POSTGRES_USERNAME")
 password = os.environ.get("POSTGRES_PASSWORD")
 database = os.environ.get("POSTGRES_DATABASE")
 
-URL = f"postgresql://{username}:{password}@postgresserver/{database}"
+URL = f"postgresql://{username}:{password}@localhost:5433/{database}"
 engine = create_engine(URL)
 
 SessionLocal = sessionmaker(engine)
