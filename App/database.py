@@ -3,11 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
-username = os.environ.get("POSTGRES_USERNAME")
-password = os.environ.get("POSTGRES_PASSWORD")
-database = os.environ.get("POSTGRES_DATABASE")
+username = os.getenv("POSTGRES_USER")
+password = os.getenv("POSTGRES_PASSWORD")
+database = os.getenv("POSTGRES_DB")
 
-URL = f"postgresql://{username}:{password}@localhost:5433/{database}"
+URL = f"postgresql://{username}:{password}@db:5432/{database}"
 engine = create_engine(URL)
 
 SessionLocal = sessionmaker(engine)

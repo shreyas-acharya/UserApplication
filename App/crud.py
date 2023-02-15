@@ -16,11 +16,10 @@ def create_user(db: Session, user: schemas.UserCreate):
 
 def update_user(db: Session, username: str, new_info: schemas.UserUpdate):
     info = get_user(db, username)
-    info.password = new_info.password
-    info.email = new_info.email
-    info.age = new_info.age
-    info.fullname = new_info.fullname
-    
+    new_data = vars(new_info)
+    for key, value in new_data.items():
+        setattr(info, key, value) if value else None
+    db.add(info)
     db.commit()
     db.refresh(info)
 
@@ -29,13 +28,16 @@ def update_user(db: Session, username: str, new_info: schemas.UserUpdate):
 def delete_user(db: Session, user: models.User):
     db.delete(user)
     db.commit()
-    return "Deleted user"
+    return "User Deleted"
 
 def add_log(db: Session, log: schemas.Log):
-    new_log = models.Log(**log.dict())
+    new_log = models.Logs(username = log.username, loggedin = log.loggedin)
     db.add(new_log)
     db.commit()
     db.refresh(new_log)
+
+def get_logs(db:Session):
+    return db.query(models.Logs).all()
 
 def get_latest_log(db:Session):
     obj = db.query(models.Logs).order_by(models.Logs.id.desc()).first()

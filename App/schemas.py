@@ -19,7 +19,13 @@ class UserUpdate(UserBase):
 class User(UserBase):
     username: str
 
+    class Config:
+        orm_mode = True
+
 class Log(BaseModel):
     id: int
     username: str
     loggedin: bool
+
+    class Config:
+        orm_mode = True
