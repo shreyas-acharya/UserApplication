@@ -29,7 +29,7 @@ def update_user(db: Session, username: str, new_info: schemas.UserUpdate):
 def delete_user(db: Session, user: models.User):
     db.delete(user)
     db.commit()
-    return 
+    return "Deleted user"
 
 def add_log(db: Session, log: schemas.Log):
     new_log = models.Log(**log.dict())

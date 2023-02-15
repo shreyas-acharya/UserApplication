@@ -1,5 +1,5 @@
 from .database import Base
-from sqlalchemy import String, Integer, Column, Boolean, DateTime
+from sqlalchemy import String, Integer, Column, Boolean, Identity
 
 class User(Base):
     __tablename__ = "users"
@@ -11,6 +11,6 @@ class User(Base):
 
 class Logs(Base):
     __tablename__ = "logs"
-    id = Column(Integer, priary_key=True, index=True)
+    id = Column(Integer, Identity(start=1, cycle=True), primary_key=True)
     username = Column(String, index=True)
     loggedin = Column(Boolean)
