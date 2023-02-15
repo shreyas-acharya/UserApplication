@@ -18,3 +18,8 @@ class UserUpdate(UserBase):
 
 class User(UserBase):
     username: str
+
+class Log(BaseModel):
+    id: int
+    username: str
+    loggedin: bool
