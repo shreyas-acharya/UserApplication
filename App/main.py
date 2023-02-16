@@ -25,7 +25,7 @@ def get_db():
 def ping():
     return "User Application is running"
 
-@app.get("/getDetails", response_model=schemas.User)
+@app.get("/getDetails")
 def get_user(db: Session = Depends(get_db)):
     prev_user = user_logged_in(db)
     if prev_user is None:
