@@ -19,7 +19,14 @@ def get_db():
 def ping():
     return "User Application is running"
 
-@app.get("/getUsers/", response_model=list[schemas.User])
+@app.get("/getUser", response_model=schemas.User)
+def get_user(db: Session = Depends(get_db)):
+    last_login = crud.get_latest_log(db)
+    if last_login is None or last_login.loggedin == False:
+        return HTTPException(status_code=400, detail="No user logged in!!!")
+    return crud.get_user(db, last_login.username)
+
+@app.get("/getUsers/", response_model=list[schemas.UserList])
 def get_all_users(db: Session = Depends(get_db)):
     return crud.get_users(db)    
 
