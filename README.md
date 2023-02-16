@@ -33,7 +33,7 @@ docker compose down
 ## Endpoints
 | Endpoint | Type | Input Format | Description | 
 | ---------| ---- | ------------ | ----------- |
-| /addUser | POST | `{ username: str, password: str, fullname: str, email: str, age: int }` | Add new user |
+| /addUser | POST | `{ username: str, password: str, fullname: str, email: str, age: int }` | Add a new user |
 | /getUsers| GET  | - | Returns a list of all users |
 | /getLogs | GET | - | Returns login and logout logs |
 | /login | POST | `{ username: str,password: str }` | Login |
@@ -41,7 +41,7 @@ docker compose down
 ### Once logged in the following endpoints can be accessed
 | Endpoint | Type | Input Format | Description |
 | -------- | ---- | ------------ | ----------- |
-| /getUser | GET | - | Display the details of the user |
-| /updateUser | PATCH | `{ password: str, fullname: str, email: str, age: int }` **Note:** All the attributes are optional | Update user information |
+| /getDetails| GET | - | Display the details of the user |
+| /updateUser | PATCH | `{ password: str, fullname: str, email: str, age: int }`<br>**Note:** All the attributes are optional | Update user details |
 | /deleteUser | DELETE | - | Delete user |
 | /logout | POST | - | Logout |
