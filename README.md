@@ -12,9 +12,9 @@ else
 fi
 ```
 ### Using Docker
-### Prerequisites:
+#### Prerequisites:
 - [Docker](https://docs.docker.com/get-docker/)
-### Steps:
+#### Steps:
 1. Clone the repository
 ```
 git clone https://github.com/shreyas-acharya/UserApplication.git

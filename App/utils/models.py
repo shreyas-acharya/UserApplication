@@ -1,6 +1,7 @@
 from database import Base
 from sqlalchemy import String, Integer, Column, Boolean, Identity
 
+
 class User(Base):
     __tablename__ = "users"
     username = Column(String, primary_key=True, index=True)
@@ -8,6 +9,7 @@ class User(Base):
     fullname = Column(String)
     email = Column(String, unique=True, index=True)
     age = Column(Integer)
+
 
 class Logs(Base):
     __tablename__ = "logs"
