@@ -1,8 +1,11 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
+import uvicorn
 
-from . import crud, models, schemas
-from .database import SessionLocal, engine
+import utils.crud as crud
+import utils.models as models
+import utils.schemas as schemas
+from database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -93,3 +96,6 @@ def logout(db: Session = Depends(get_db)):
 @app.get("/getLogs", response_model=list[schemas.Log])
 def get_logs(db:Session = Depends(get_db)):
     return crud.get_logs(db)
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0")

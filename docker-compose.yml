@@ -2,11 +2,11 @@ version: "3"
 services:
   fastapi:
     build: .
-    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uvicorn App.main:app --host 0.0.0.0'
     environment:
       - POSTGRES_USER=${USERNAME}
       - POSTGRES_PASSWORD=${PASSWORD}
       - POSTGRES_DB=${DATABASE}
+    restart: always
     volumes:
       - .:/App
     ports:
