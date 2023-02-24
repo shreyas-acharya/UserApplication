@@ -3,18 +3,9 @@
 User Management Application built using [FastAPI](https://fastapi.tiangolo.com/) and [Sqlalchemy](https://www.sqlalchemy.org/)(postgres).
 
 ## Setup
-### Using Bash
-```bash
-if command -v curl >/dev/null 2>&1; then
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/shreyas-acharya/UserApplication/HEAD/install.sh)"
-else
-    bash -c "$(wget -O- https://raw.githubusercontent.com/shreyas-acharya/UserApplication/HEAD/install.sh)"
-fi
-```
-### Using Docker
-#### Prerequisites:
+### Prerequisites:
 - [Docker](https://docs.docker.com/get-docker/)
-#### Steps:
+### Steps:
 1. Clone the repository
 ```
 git clone https://github.com/shreyas-acharya/UserApplication.git
