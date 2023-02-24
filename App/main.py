@@ -37,7 +37,7 @@ def ping():
 def get_user(db: Session = Depends(get_db)):
     prev_user = user_logged_in(db)
     if prev_user is None:
-        return HTTPException(status_code=400, detail="No user logged in!!!")
+        return HTTPException(status_code=401, detail="No user logged in!!!")
     return crud.get_user(db, prev_user)
 
 
@@ -50,7 +50,7 @@ def get_all_users(db: Session = Depends(get_db)):
 def add_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     check = crud.get_user(db, user.username)
     if check is not None:
-        return HTTPException(status_code=400, detail="Username already exists!!!")
+        return HTTPException(status_code=402, detail="Username already exists!!!")
     return crud.create_user(db, user)
 
 
@@ -58,7 +58,7 @@ def add_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 def update(user: schemas.UserUpdate, db: Session = Depends(get_db)):
     prev_user = user_logged_in(db)
     if prev_user is None:
-        return HTTPException(status_code=400, detail="No User Logged in")
+        return HTTPException(status_code=401, detail="No user logged in!!!")
     crud.update_user(db, prev_user, user)
     return "User Information Updated"
 
@@ -67,7 +67,7 @@ def update(user: schemas.UserUpdate, db: Session = Depends(get_db)):
 def delete(db: Session = Depends(get_db)):
     prev_user = user_logged_in(db)
     if prev_user is None:
-        return HTTPException(status_code=400, detail="No User Logged in")
+        return HTTPException(status_code=401, detail="No user logged in!!!")
     logout(db)
     return crud.delete_user(db, crud.get_user(db, prev_user))
 
@@ -76,9 +76,9 @@ def delete(db: Session = Depends(get_db)):
 def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
     check = crud.get_user(db, user.username)
     if check is None:
-        return HTTPException(status_code=400, detail="User doesn't exits")
+        return HTTPException(status_code=403, detail="User doesn't exits")
     if check.password != user.password:
-        return HTTPException(status_code=400, detail="Incorrect password")
+        return HTTPException(status_code=404, detail="Incorrect password")
 
     prev_user = user_logged_in(db)
     new_log = models.Logs(username=user.username, loggedin=True)
@@ -97,7 +97,7 @@ def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
 def logout(db: Session = Depends(get_db)):
     prev_user = user_logged_in(db)
     if prev_user is None:
-        return "No User Logged in"
+        return "No user logged in!!!"
     else:
         new_log = models.Logs(username=prev_user, loggedin=False)
         crud.add_log(db, new_log)
