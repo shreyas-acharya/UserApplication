@@ -76,7 +76,7 @@ def delete(db: Session = Depends(get_db)):
 def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
     check = crud.get_user(db, user.username)
     if check is None:
-        return HTTPException(status_code=403, detail="User doesn't exits")
+        return HTTPException(status_code=403, detail="User doesn't exists")
     if check.password != user.password:
         return HTTPException(status_code=404, detail="Incorrect password")
 

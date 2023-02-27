@@ -17,17 +17,16 @@ USERNAME=<postgres_username>
 PASSWORD=<postgres_password>
 DATABASE=<database_name>
 ```
-3. Build the docker images, containers and volumes
-```
-docker compose build
-```
 4. Start the application
 ```
-docker compose up
+docker compose -f ./docker-compose.yml up // Non persistent storage (suitable for testing)
+docker compose -f ./docker-compose.yml -f ./docker-compose-production.yml up // Persistent storage (suitable for production environment)
 ```
 5. Stop and remove the containers
 ```
-docker compose down
+docker compose -f ./docker-compose.yml down
+(or)
+docker compose -f ./docker-compose.yml -f ./docker-compose-production.yml down
 ```
 
 ## Endpoints
