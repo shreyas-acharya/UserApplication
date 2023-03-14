@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import text
 from . import models, schemas
 
 
@@ -37,8 +38,8 @@ def delete_user(db: Session, user: models.User):
 
 
 def delete_all(db: Session):
-    db.execute("TRUNCATE users;")
-    db.execute("TRUNCATE logs;")
+    db.execute(text("TRUNCATE users;"))
+    db.execute(text("TRUNCATE logs;"))
     db.commit()
 
 
