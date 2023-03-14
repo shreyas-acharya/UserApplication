@@ -35,6 +35,7 @@ def delete_user(db: Session, user: models.User):
     db.commit()
     return "User Deleted"
 
+
 def delete_all(db: Session):
     db.execute("TRUNCATE users;")
     db.execute("TRUNCATE logs;")

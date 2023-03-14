@@ -71,6 +71,7 @@ def delete(db: Session = Depends(get_db)):
     logout(db)
     return crud.delete_user(db, crud.get_user(db, prev_user))
 
+
 @app.delete("/deleteAll")
 def deleteAll(db: Session = Depends(get_db)):
     crud.delete_all(db)
