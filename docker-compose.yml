@@ -6,6 +6,7 @@ services:
       - POSTGRES_USER=${USERNAME}
       - POSTGRES_PASSWORD=${PASSWORD}
       - POSTGRES_DB=${DATABASE}
+      - POSTGRES_HOST=db
     restart: always
     volumes:
       - .:/App
