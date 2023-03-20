@@ -1,6 +1,7 @@
 name: "Trigger CI - CD"
 on:
-  push
+  - push
+  - workflow_dispatch
 jobs:
   Trigger:
     runs-on: ubuntu-latest
