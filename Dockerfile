@@ -10,4 +10,5 @@ FROM python:3.11-slim
 WORKDIR src
 COPY /App .
 COPY --from=builder /src/packages /src
+RUN apt-get remove --auto-remove -y --allow-remove-essential e2fsprogs ncurses-base ncurses-bin libdb5.3 libncursesw6 libtinfo6 libcom-err2 libgcrypt20
 ENTRYPOINT ["python", "main.py"]
