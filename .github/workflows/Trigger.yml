@@ -1,0 +1,13 @@
+name: "Trigger CI - CD"
+on:
+  push
+jobs:
+  Trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger event
+        run: |
+          curl -XPOST -u "$USERNAME:$TOKEN" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/shreyas-acharya/CI-CD-Pipeline/dispatches --data '{"event_type": "build_application"}'
+        env:
+          USERNAME: ${{ secrets.PAT_USERNAME }}
+          TOKEN: ${{ secrets.PAT_TOKEN }}
