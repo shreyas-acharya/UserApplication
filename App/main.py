@@ -33,6 +33,13 @@ def ping():
     return "User Application is running"
 
 
+@app.get("/version")
+def version():
+    with open("./VERSION", "r") as file:
+        version = file.read().strip()
+    return version
+
+
 @app.get("/getDetails")
 def get_user(db: Session = Depends(get_db)):
     prev_user = user_logged_in(db)

@@ -2,7 +2,7 @@ version: "3"
 services:
   fastapi:
     build: .
-    image: shreyasacharyaa/fastapi:latest
+    image: ${IMAGE}
     environment:
       - POSTGRES_USER=${USERNAME}
       - POSTGRES_PASSWORD=${PASSWORD}
