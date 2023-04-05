@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USERNAME=shreyasacharyaa
+USERNAME=shreyas-acharya
 IMAGE=fastapi
 VERSION=`cat ./App/VERSION`
 echo "VERSION : $VERSION"
