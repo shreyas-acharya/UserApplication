@@ -1,7 +1,7 @@
 version: "3"
 services:
   fastapi:
-    build: .
+    # build: .
     image: ${IMAGE}
     environment:
       - POSTGRES_USER=${USERNAME}
